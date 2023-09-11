@@ -23,10 +23,15 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 ALLOWED_HOSTS = ['*']
 
+GRAPHENE = {
+    'SCHEMA': 'blog.schema.schema',
+}
+
 INSTALLED_APPS = [
     "home",
     "search",
     "blog",
+    "graphene_django",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -102,7 +107,7 @@ DATABASES = {
         'NAME': 'wagtail',
         'USER': 'mysuperuser',
         'PASSWORD': 'mysuperuser',
-        'HOST': 'backend-wagtail.ctsv9ztrayfl.ap-southeast-2.rds.amazonaws.com',  # or your PostgreSQL host
+        'HOST': 'wagtail-backend.ch4gxur3pgdk.ap-southeast-1.rds.amazonaws.com',  # or your PostgreSQL host
         'PORT': '5432', 
     }
 }
@@ -184,7 +189,7 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 # s3 setup
 AWS_ACCESS_KEY_ID = 'AKIAYOWLGXG624AHFE7X'
 AWS_SECRET_ACCESS_KEY = 'wtR7otgUHHpbvCXhLXA3kvAgl47C6tpTigZoNr74'
-AWS_STORAGE_BUCKET_NAME = 'backendwagtail'
+AWS_STORAGE_BUCKET_NAME = 'backendwagtail-singapore'
 AWS_S3_SIGNATURE_NAME = 's3v4',
 AWS_S3_REGION_NAME = 'ap-southeast-2'
 AWS_S3_FILE_OVERWRITE = False

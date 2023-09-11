@@ -8,11 +8,18 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+from django.urls import re_path
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
+
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
+   
+    re_path(r'^api/graphql', csrf_exempt(GraphQLView.as_view())),
+    re_path(r'^api/graphiql', csrf_exempt(GraphQLView.as_view(graphiql=True, pretty=True))),
 ]
 
 
