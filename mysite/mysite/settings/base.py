@@ -90,27 +90,23 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # local postgres
+DATABASES = {
+    "default": {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
+    }
+}
+# aws postgres
 # DATABASES = {
 #     "default": {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'blogwagtail',
-#         'USER': 'postgres',
-#         'PASSWORD': 'a123',
-#         'HOST': 'localhost',  # or your PostgreSQL host
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'wagtail',
+#         'USER': 'mysuperuser',
+#         'PASSWORD': 'mysuperuser',
+#         'HOST': 'wagtail-backend.ch4gxur3pgdk.ap-southeast-1.rds.amazonaws.com',  # or your PostgreSQL host
 #         'PORT': '5432', 
 #     }
 # }
-# aws postgres
-DATABASES = {
-    "default": {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'wagtail',
-        'USER': 'mysuperuser',
-        'PASSWORD': 'mysuperuser',
-        'HOST': 'wagtail-backend.ch4gxur3pgdk.ap-southeast-1.rds.amazonaws.com',  # or your PostgreSQL host
-        'PORT': '5432', 
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -167,7 +163,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-# MEDIA_URL = "/media/"
+MEDIA_URL = "/media/"
 
 
 # Wagtail settings
@@ -187,14 +183,14 @@ WAGTAILSEARCH_BACKENDS = {
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
 # s3 setup
-AWS_ACCESS_KEY_ID = 'AKIAYOWLGXG624AHFE7X'
-AWS_SECRET_ACCESS_KEY = 'wtR7otgUHHpbvCXhLXA3kvAgl47C6tpTigZoNr74'
-AWS_STORAGE_BUCKET_NAME = 'backendwagtail-singapore'
-AWS_S3_SIGNATURE_NAME = 's3v4',
-AWS_S3_REGION_NAME = 'ap-southeast-2'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL =  None
-AWS_S3_VERITY = True
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = 'AKIAYOWLGXG624AHFE7X'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'backendwagtail-singapore'
+# AWS_S3_SIGNATURE_NAME = 's3v4',
+# AWS_S3_REGION_NAME = 'ap-southeast-2'
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL =  None
+# AWS_S3_VERITY = True
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-MEDIA_URL = 'https://s3.amazonaws.com/{}/'.format(AWS_STORAGE_BUCKET_NAME)
+# MEDIA_URL = 'https://s3.amazonaws.com/{}/'.format(AWS_STORAGE_BUCKET_NAME)
