@@ -21,7 +21,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # Application definition
-ALLOWED_HOSTS = ['*']
 
 GRAPHENE = {
     'SCHEMA': 'blog.schema.schema',
