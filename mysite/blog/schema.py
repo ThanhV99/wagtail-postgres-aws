@@ -41,6 +41,7 @@ class BlogNode(DjangoObjectType):
     body = graphene.List(BlockUnion)
     feed_image = graphene.String()
     category = graphene.List(CategoryType)
+    update_time = graphene.String()
     
     class Meta:
         model = BlogPage
@@ -62,6 +63,9 @@ class BlogNode(DjangoObjectType):
     
     def resolve_category(self, info):
         return self.categories.all() 
+    
+    def resolve_update_time(self, info):
+        return self.update_time.strftime('%Y-%m-%d %H:%M:%S') if self.update_time else None
     
 class Query(graphene.ObjectType):
     allBlog = graphene.List(BlogNode, order_by=Argument(graphene.String, default_value='update_time'))

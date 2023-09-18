@@ -15,6 +15,7 @@ from django.contrib import messages
 from blog.blocks import SectionBlock
 from wagtail import blocks
 from django.utils import timezone
+import datetime
 
 # tag
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -35,7 +36,7 @@ class BlogPage(Page):
         # db_tablespace = 'test_data' # postgress rds khong co tablespace
 
     blog_title = models.CharField(max_length=255, blank=True)
-    date = models.DateField("Creation time", null=True, blank=True)
+    date = models.DateTimeField("Creation time", null=True, blank=True)
     update_time = models.DateTimeField("Update time", null=True, blank=True)
     description = models.CharField(max_length=250, default='')
     body = StreamField(
@@ -76,9 +77,9 @@ class BlogPage(Page):
     def save(self, *args, **kwargs):
         self.full_clean()  # Ensure validation is triggered before saving
         if not self.id:
-            self.date = timezone.now()
+            self.date = datetime.datetime.now().today()
         self.blog_title = self.title
-        self.update_time = timezone.now()
+        self.update_time = datetime.datetime.now().today()
         super().save(*args, **kwargs)
         
 
