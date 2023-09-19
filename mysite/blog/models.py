@@ -77,9 +77,9 @@ class BlogPage(Page):
     def save(self, *args, **kwargs):
         self.full_clean()  # Ensure validation is triggered before saving
         if not self.id:
-            self.date = datetime.datetime.now().today()
+            self.date = timezone.now()
         self.blog_title = self.title
-        self.update_time = datetime.datetime.now().today()
+        self.update_time = timezone.now()
         super().save(*args, **kwargs)
         
 
