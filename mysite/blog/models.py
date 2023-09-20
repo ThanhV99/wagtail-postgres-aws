@@ -15,7 +15,7 @@ from django.contrib import messages
 from blog.blocks import SectionBlock
 from wagtail import blocks
 from django.utils import timezone
-import datetime
+import pytz
 
 # tag
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -79,6 +79,8 @@ class BlogPage(Page):
         if not self.id:
             self.date = timezone.now()
         self.blog_title = self.title
+        # asia_ho_chi_minh = pytz.timezone('Asia/Ho_Chi_Minh')
+        # self.update_time = timezone.now().astimezone(asia_ho_chi_minh)
         self.update_time = timezone.now()
         super().save(*args, **kwargs)
         
